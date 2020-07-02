@@ -5,11 +5,20 @@
  * Date: 2020/7/1
  * Time: 16:08
  */
-require __DIR__. '/app/Controller/Admin/Index.php';
-require __DIR__. '/app/Controller/Home/Index.php';
 
-$res = new \App\Controller\Home\Index();
-$res1 = new \App\Controller\Admin\Index();
+define('BASE_DIR', __DIR__);
+
+include BASE_DIR . '/app/Helper/Common.php';
+include BASE_DIR . '/app/Object/Loader.php';
+spl_autoload_register("\\App\\Object\\Loader::autoLoader");
 
 
-print_r($res::test());
+\App\Controller\Home\Index::test();
+//\App\Object\Database::getInstance();
+
+//$ress = require BASE_DIR.'/Config/data.php';
+
+
+
+
+

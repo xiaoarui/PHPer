@@ -5,6 +5,6 @@ namespace App\Controller\Admin;
 class Index
 {
     public function test(){
-        echo __METHOD__;
+        $sql = 'select * from ecs_users';
     }
 }
