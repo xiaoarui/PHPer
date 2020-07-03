@@ -1,33 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2020/7/2
- * Time: 11:20
- */
 
 namespace Extend\Sql;
 
 
-abstract class Model
+interface Model
 {
-    public function connect(){
 
-    }
+    function connect($host, $dbname, $user, $pwd);
 
-    //public function select();
+    function query($sql);
 
-    public function where($sql = ''){
-
-    }
-
-    public function getAll($sql = ''){
-
-    }
-
-//    public function orderby();
-//
-    public function limit(){
-
-    }
+    function close();
 }

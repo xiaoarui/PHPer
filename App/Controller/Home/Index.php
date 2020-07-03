@@ -3,7 +3,7 @@
 namespace App\Controller\Home;
 
 use App\Object\Database;
-use Extend\Sql\Pdo\Pdo;
+use Extend\Sql\Pdo;
 
 class Index
 {
@@ -13,11 +13,7 @@ class Index
 //        $db = Database::query();
         $sql = 'select * from ecs_users';
         $db = new Pdo();
-        $db = $db->prepare('select * from ecs_users');
+        $db = $db->query('select * from ecs_users');
         dd($db);
-        $db = $db->getAll($sql);
-
-   
-//        dd($db);
     }
 }
