@@ -3,17 +3,22 @@
 namespace App\Controller\Home;
 
 use App\Object\Database;
+use Extend\Sql\Mysql;
+use Extend\Sql\Mysqli;
 use Extend\Sql\Pdo;
 
 class Index
 {
     static function test()
     {
-        
-//        $db = Database::query();
-        $sql = 'select * from ecs_users';
         $db = new Pdo();
-        $db = $db->query('select * from ecs_users');
-        dd($db);
+        $res = $db->query('select user_id from ecs_users limit 2 ');
+        dump($res);
+
+
+        $db1 = new Mysqli();
+        $ree = $db1->query('select user_id from ecs_users limit 4');
+
+        dd($ree);
     }
 }

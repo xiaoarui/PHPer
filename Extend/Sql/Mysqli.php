@@ -2,13 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2020/7/2
- * Time: 11:03
+ * Date: 2020/7/3
+ * Time: 10:53
  */
 
 namespace Extend\Sql;
 
-class Pdo implements Model
+
+class Mysqli implements Model
 {
     private static $conn;
     public function __construct()
@@ -22,23 +23,21 @@ class Pdo implements Model
 
     function connect($host, $dbname, $user, $pwd)
     {
-
-        $dsn = 'mysql:host=' . $host . ';' . 'dbname=' . $dbname;
-        $db = new \PDO($dsn, $user, $pwd);
+        $db = mysqli_connect($host, $user, $pwd, $dbname);
         self::$conn = $db;
         // TODO: Implement connect() method.
     }
 
     function query($sql)
     {
-        $db = self::$conn->prepare($sql);
-        $db->execute();
-        return $db->fetchAll();
+        $db = self::$conn->query($sql);
+        return $db->fetch_all();
     }
 
     function close()
     {
-        self::$conn = null;
+        mysqli_close(self::$conn);
         // TODO: Implement close() method.
     }
+
 }

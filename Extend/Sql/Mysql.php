@@ -2,13 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2020/7/2
- * Time: 11:03
+ * Date: 2020/7/3
+ * Time: 11:00
  */
 
 namespace Extend\Sql;
 
-class Pdo implements Model
+
+class Mysql implements Model
 {
     private static $conn;
     public function __construct()
@@ -22,18 +23,21 @@ class Pdo implements Model
 
     function connect($host, $dbname, $user, $pwd)
     {
+        $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+        dd($link);exit;
+        $db = mysql_connect($host, $user, $pwd);
+        if (!$db) {
+            die('Could not connect: ' . mysql_error());
+        }
 
-        $dsn = 'mysql:host=' . $host . ';' . 'dbname=' . $dbname;
-        $db = new \PDO($dsn, $user, $pwd);
-        self::$conn = $db;
+        //self::$conn = $db;
         // TODO: Implement connect() method.
     }
 
     function query($sql)
     {
-        $db = self::$conn->prepare($sql);
-        $db->execute();
-        return $db->fetchAll();
+        $db = self::$conn->query($sql);
+        return $db->fetch_all();
     }
 
     function close()
@@ -41,4 +45,5 @@ class Pdo implements Model
         self::$conn = null;
         // TODO: Implement close() method.
     }
+
 }
